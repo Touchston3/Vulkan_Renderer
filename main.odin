@@ -18,9 +18,6 @@ main :: proc()
 	glfw_extension_count: u32 = 0
 	glfw_extension_names: [^]cstring = bindings.GetRequiredInstanceExtensions(&glfw_extension_count)
 
-
-
-
 	
 	vulkan.load_proc_addresses((rawptr)(glfw.GetInstanceProcAddress))
 
