@@ -12,6 +12,7 @@
 
 #include "app.hpp"
 #include "utils.hpp"
+#include "Window.hpp"
 
 App::App(){}
 App::~App(){}
@@ -20,28 +21,7 @@ void App::init(){}
 
 void App::run()
 {
-	// -- GLFW INIT
-	GLFWwindow* window(nullptr);
-	auto glfw_extensions = std::vector<const char*>();
- 	{
-		const uint32_t WIDTH = 640;
-		const uint32_t HEIGHT= 480;
-
-		if( !glfwInit() )
-			std::cout << "Error in GLFW Init \n";
-
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-		window = glfwCreateWindow(WIDTH, HEIGHT,"Vulkan App", nullptr, nullptr);
-
-		uint32_t glfw_extension_count = 0;
-		auto glfw_extension_names = (const char**) glfwGetRequiredInstanceExtensions(&glfw_extension_count);
-
-		glfw_extensions = std::vector<const char*>(glfw_extension_names, glfw_extension_names + glfw_extension_count);
-
-		//Add debug utils
-		glfw_extensions.push_back("VK_EXT_debug_utils");
-	}
-
+	auto window = Window(640, 480, "Test Window");
 	//Create Validation Layers -- Need to do actual debugging
 	auto vk_validation_layers = std::vector<const char*>();
 	{
@@ -84,8 +64,8 @@ void App::run()
 			&vk_app_info,
 			static_cast<uint32_t>(vk_validation_layers.size()), //Validation Layers
 			vk_validation_layers.data(), //Validation Layers
-			static_cast<uint32_t>(glfw_extensions.size()), //Extensions
-			glfw_extensions.data(), //Extensions
+			static_cast<uint32_t>(window._extensions.size()), //Extensions
+			window._extensions.data(), //Extensions
 		};
 
 		if( vk::createInstance( &vk_instance_info, nullptr, &vk_instance ) != vk::Result::eSuccess)
@@ -117,7 +97,6 @@ void App::run()
 			vkGetPhysicalDeviceProperties(device, &properties);
 			vkGetPhysicalDeviceFeatures(device, &features);
 
-	  		std::cout << properties.deviceName << "\n";
 			if( properties.deviceType == VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU )
 			{
 				vk_device = vk::PhysicalDevice(device); 
@@ -128,6 +107,58 @@ void App::run()
 			std::cout << "No Integrated GPU available \n";
 	}
 
+	//setup queue families
+	bool has_graphics_queue_support = false;
+	uint32_t graphics_family_queue = 0;
+	{
+		auto queue_family_properties = (std::vector<vk::QueueFamilyProperties>) vk_device.getQueueFamilyProperties();
+
+		int i = 0;
+		for( auto queue_family : queue_family_properties )
+		{
+			if( queue_family.queueFlags & vk::QueueFlagBits::eGraphics )
+			{	
+				has_graphics_queue_support = true;
+				graphics_family_queue = i;
+			}
+			i++;
+		}
+	}
+
+	//setup logical device and graphics queue
+	auto logical_device = vk::Device();
+	auto graphics_queue = vk::Queue();
+	{
+		float queue_priority = 1.f;
+		uint32_t queue_create_info_count = 1;
+		auto queue_create_info = vk::DeviceQueueCreateInfo
+		(
+			vk::DeviceQueueCreateFlags(),
+			graphics_family_queue,
+			1,
+			&queue_priority
+		);
+
+		auto device_features = vk::PhysicalDeviceFeatures();
+		auto device_info = vk::DeviceCreateInfo
+		(
+			vk::DeviceCreateFlags(),
+			queue_create_info_count,
+			&queue_create_info,
+			static_cast<uint32_t>(vk_validation_layers.size()),
+			vk_validation_layers.data(),
+			0, nullptr,
+			&device_features
+		);
+
+		try {
+			logical_device = vk_device.createDevice(device_info);
+		} catch( vk::SystemError e ) {
+			std::cout << e.what() << "\n";
+		}
+
+		graphics_queue = logical_device.getQueue(graphics_family_queue, 0);
+	}
 
 
 
@@ -137,17 +168,15 @@ void App::run()
 		auto result = (vk::Result) glfwCreateWindowSurface
 		( 
 			static_cast<VkInstance>(vk_instance),
-			window,
+			window._handle.get(),
 			nullptr,
 			reinterpret_cast<VkSurfaceKHR*>(&vk_surface)
 		);
-		
 		//TODO: Actual Debugging
-		std::string result_string;
 		try {
+			std::string result_string;
 			vk::resultCheck(result, result_string.c_str());
-		} catch (vk::SystemError e)
-		{
+		} catch (vk::SystemError e) {
 			std::cout << "issue creating vulkan-glfw surface " << e.what() << "\n";
 		}
 	}
@@ -159,15 +188,15 @@ void App::run()
 
 
 
-	while( !glfwWindowShouldClose(window) )
+	while( !window.should_close() )
 	{
 		glfwPollEvents();
 	}
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	vkDestroySurfaceKHR(vk_instance, vk_surface, nullptr);
-	vkDestroyInstance(vk_instance, nullptr);
+	vk_instance.destroySurfaceKHR(vk_surface);
+	logical_device.destroy();
+	vk_instance.destroy();
+
 }
 
 void App::cleanup(){}

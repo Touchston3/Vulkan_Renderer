@@ -129,6 +129,30 @@ vulkan_renderer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/build
 .PHONY : vulkan_renderer/fast
 
+src/Window.o: src/Window.cpp.o
+.PHONY : src/Window.o
+
+# target to build an object file
+src/Window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o
+.PHONY : src/Window.cpp.o
+
+src/Window.i: src/Window.cpp.i
+.PHONY : src/Window.i
+
+# target to preprocess a source file
+src/Window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/Window.cpp.i
+.PHONY : src/Window.cpp.i
+
+src/Window.s: src/Window.cpp.s
+.PHONY : src/Window.s
+
+# target to generate assembly for a file
+src/Window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/Window.cpp.s
+.PHONY : src/Window.cpp.s
+
 src/app.o: src/app.cpp.o
 .PHONY : src/app.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... vulkan_renderer"
+	@echo "... src/Window.o"
+	@echo "... src/Window.i"
+	@echo "... src/Window.s"
 	@echo "... src/app.o"
 	@echo "... src/app.i"
 	@echo "... src/app.s"

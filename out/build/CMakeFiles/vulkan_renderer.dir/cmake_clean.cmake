@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o"
+  "CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o.d"
   "CMakeFiles/vulkan_renderer.dir/src/app.cpp.o"
   "CMakeFiles/vulkan_renderer.dir/src/app.cpp.o.d"
   "CMakeFiles/vulkan_renderer.dir/src/main.cpp.o"
