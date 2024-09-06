@@ -1,0 +1,3 @@
+/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/vulkan_renderer.dir
+/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/edit_cache.dir
+/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/rebuild_cache.dir
