@@ -129,30 +129,6 @@ vulkan_renderer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/build
 .PHONY : vulkan_renderer/fast
 
-src/Window.o: src/Window.cpp.o
-.PHONY : src/Window.o
-
-# target to build an object file
-src/Window.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o
-.PHONY : src/Window.cpp.o
-
-src/Window.i: src/Window.cpp.i
-.PHONY : src/Window.i
-
-# target to preprocess a source file
-src/Window.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/Window.cpp.i
-.PHONY : src/Window.cpp.i
-
-src/Window.s: src/Window.cpp.s
-.PHONY : src/Window.s
-
-# target to generate assembly for a file
-src/Window.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/Window.cpp.s
-.PHONY : src/Window.cpp.s
-
 src/app.o: src/app.cpp.o
 .PHONY : src/app.o
 
@@ -176,6 +152,126 @@ src/app.s: src/app.cpp.s
 src/app.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/app.cpp.s
 .PHONY : src/app.cpp.s
+
+src/gfx/Device.o: src/gfx/Device.cpp.o
+.PHONY : src/gfx/Device.o
+
+# target to build an object file
+src/gfx/Device.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o
+.PHONY : src/gfx/Device.cpp.o
+
+src/gfx/Device.i: src/gfx/Device.cpp.i
+.PHONY : src/gfx/Device.i
+
+# target to preprocess a source file
+src/gfx/Device.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.i
+.PHONY : src/gfx/Device.cpp.i
+
+src/gfx/Device.s: src/gfx/Device.cpp.s
+.PHONY : src/gfx/Device.s
+
+# target to generate assembly for a file
+src/gfx/Device.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.s
+.PHONY : src/gfx/Device.cpp.s
+
+src/gfx/Instance.o: src/gfx/Instance.cpp.o
+.PHONY : src/gfx/Instance.o
+
+# target to build an object file
+src/gfx/Instance.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o
+.PHONY : src/gfx/Instance.cpp.o
+
+src/gfx/Instance.i: src/gfx/Instance.cpp.i
+.PHONY : src/gfx/Instance.i
+
+# target to preprocess a source file
+src/gfx/Instance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.i
+.PHONY : src/gfx/Instance.cpp.i
+
+src/gfx/Instance.s: src/gfx/Instance.cpp.s
+.PHONY : src/gfx/Instance.s
+
+# target to generate assembly for a file
+src/gfx/Instance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.s
+.PHONY : src/gfx/Instance.cpp.s
+
+src/gfx/PhysicalDevice.o: src/gfx/PhysicalDevice.cpp.o
+.PHONY : src/gfx/PhysicalDevice.o
+
+# target to build an object file
+src/gfx/PhysicalDevice.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o
+.PHONY : src/gfx/PhysicalDevice.cpp.o
+
+src/gfx/PhysicalDevice.i: src/gfx/PhysicalDevice.cpp.i
+.PHONY : src/gfx/PhysicalDevice.i
+
+# target to preprocess a source file
+src/gfx/PhysicalDevice.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.i
+.PHONY : src/gfx/PhysicalDevice.cpp.i
+
+src/gfx/PhysicalDevice.s: src/gfx/PhysicalDevice.cpp.s
+.PHONY : src/gfx/PhysicalDevice.s
+
+# target to generate assembly for a file
+src/gfx/PhysicalDevice.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.s
+.PHONY : src/gfx/PhysicalDevice.cpp.s
+
+src/gfx/Surface.o: src/gfx/Surface.cpp.o
+.PHONY : src/gfx/Surface.o
+
+# target to build an object file
+src/gfx/Surface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o
+.PHONY : src/gfx/Surface.cpp.o
+
+src/gfx/Surface.i: src/gfx/Surface.cpp.i
+.PHONY : src/gfx/Surface.i
+
+# target to preprocess a source file
+src/gfx/Surface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.i
+.PHONY : src/gfx/Surface.cpp.i
+
+src/gfx/Surface.s: src/gfx/Surface.cpp.s
+.PHONY : src/gfx/Surface.s
+
+# target to generate assembly for a file
+src/gfx/Surface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.s
+.PHONY : src/gfx/Surface.cpp.s
+
+src/gfx/Window.o: src/gfx/Window.cpp.o
+.PHONY : src/gfx/Window.o
+
+# target to build an object file
+src/gfx/Window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o
+.PHONY : src/gfx/Window.cpp.o
+
+src/gfx/Window.i: src/gfx/Window.cpp.i
+.PHONY : src/gfx/Window.i
+
+# target to preprocess a source file
+src/gfx/Window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.i
+.PHONY : src/gfx/Window.cpp.i
+
+src/gfx/Window.s: src/gfx/Window.cpp.s
+.PHONY : src/gfx/Window.s
+
+# target to generate assembly for a file
+src/gfx/Window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.s
+.PHONY : src/gfx/Window.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -210,12 +306,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... vulkan_renderer"
-	@echo "... src/Window.o"
-	@echo "... src/Window.i"
-	@echo "... src/Window.s"
 	@echo "... src/app.o"
 	@echo "... src/app.i"
 	@echo "... src/app.s"
+	@echo "... src/gfx/Device.o"
+	@echo "... src/gfx/Device.i"
+	@echo "... src/gfx/Device.s"
+	@echo "... src/gfx/Instance.o"
+	@echo "... src/gfx/Instance.i"
+	@echo "... src/gfx/Instance.s"
+	@echo "... src/gfx/PhysicalDevice.o"
+	@echo "... src/gfx/PhysicalDevice.i"
+	@echo "... src/gfx/PhysicalDevice.s"
+	@echo "... src/gfx/Surface.o"
+	@echo "... src/gfx/Surface.i"
+	@echo "... src/gfx/Surface.s"
+	@echo "... src/gfx/Window.o"
+	@echo "... src/gfx/Window.i"
+	@echo "... src/gfx/Window.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

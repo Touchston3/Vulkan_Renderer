@@ -211,7 +211,7 @@ CMakeFiles/vulkan_renderer.dir/src/app.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
  /usr/include/c++/13/bits/fstream.tcc \
- /home/touchston3/code/vulkan_renderer/src/Window.hpp \
+ /home/touchston3/code/vulkan_renderer/src/gfx/Window.hpp \
  /usr/include/c++/13/memory \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h /usr/include/c++/13/bits/unique_ptr.h \
@@ -246,4 +246,8 @@ CMakeFiles/vulkan_renderer.dir/src/app.cpp.o: \
  /usr/include/c++/13/bits/std_mutex.h \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/bits/ranges_uninitialized.h \
- /usr/include/c++/13/pstl/glue_memory_defs.h
+ /usr/include/c++/13/pstl/glue_memory_defs.h \
+ /home/touchston3/code/vulkan_renderer/src/gfx/Instance.hpp \
+ /home/touchston3/code/vulkan_renderer/src/gfx/Device.hpp \
+ /home/touchston3/code/vulkan_renderer/src/gfx/PhysicalDevice.hpp \
+ /home/touchston3/code/vulkan_renderer/src/gfx/Surface.hpp

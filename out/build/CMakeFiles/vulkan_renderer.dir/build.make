@@ -69,24 +69,10 @@ include CMakeFiles/vulkan_renderer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/vulkan_renderer.dir/flags.make
 
-CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
-CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o: /home/touchston3/code/vulkan_renderer/src/Window.cpp
-CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o -c /home/touchston3/code/vulkan_renderer/src/Window.cpp
-
-CMakeFiles/vulkan_renderer.dir/src/Window.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vulkan_renderer.dir/src/Window.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/touchston3/code/vulkan_renderer/src/Window.cpp > CMakeFiles/vulkan_renderer.dir/src/Window.cpp.i
-
-CMakeFiles/vulkan_renderer.dir/src/Window.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/Window.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/Window.cpp -o CMakeFiles/vulkan_renderer.dir/src/Window.cpp.s
-
 CMakeFiles/vulkan_renderer.dir/src/app.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
 CMakeFiles/vulkan_renderer.dir/src/app.cpp.o: /home/touchston3/code/vulkan_renderer/src/app.cpp
 CMakeFiles/vulkan_renderer.dir/src/app.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/app.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/app.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/app.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/app.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/app.cpp.o -c /home/touchston3/code/vulkan_renderer/src/app.cpp
 
 CMakeFiles/vulkan_renderer.dir/src/app.cpp.i: cmake_force
@@ -97,10 +83,80 @@ CMakeFiles/vulkan_renderer.dir/src/app.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/app.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/app.cpp -o CMakeFiles/vulkan_renderer.dir/src/app.cpp.s
 
+CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
+CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o: /home/touchston3/code/vulkan_renderer/src/gfx/Device.cpp
+CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o -c /home/touchston3/code/vulkan_renderer/src/gfx/Device.cpp
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/touchston3/code/vulkan_renderer/src/gfx/Device.cpp > CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.i
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/gfx/Device.cpp -o CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.s
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
+CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o: /home/touchston3/code/vulkan_renderer/src/gfx/Instance.cpp
+CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o -c /home/touchston3/code/vulkan_renderer/src/gfx/Instance.cpp
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/touchston3/code/vulkan_renderer/src/gfx/Instance.cpp > CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.i
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/gfx/Instance.cpp -o CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.s
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
+CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o: /home/touchston3/code/vulkan_renderer/src/gfx/PhysicalDevice.cpp
+CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o -c /home/touchston3/code/vulkan_renderer/src/gfx/PhysicalDevice.cpp
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/touchston3/code/vulkan_renderer/src/gfx/PhysicalDevice.cpp > CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.i
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/gfx/PhysicalDevice.cpp -o CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.s
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
+CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o: /home/touchston3/code/vulkan_renderer/src/gfx/Surface.cpp
+CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o -c /home/touchston3/code/vulkan_renderer/src/gfx/Surface.cpp
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/touchston3/code/vulkan_renderer/src/gfx/Surface.cpp > CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.i
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/gfx/Surface.cpp -o CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.s
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
+CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o: /home/touchston3/code/vulkan_renderer/src/gfx/Window.cpp
+CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o -c /home/touchston3/code/vulkan_renderer/src/gfx/Window.cpp
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/touchston3/code/vulkan_renderer/src/gfx/Window.cpp > CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.i
+
+CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/touchston3/code/vulkan_renderer/src/gfx/Window.cpp -o CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.s
+
 CMakeFiles/vulkan_renderer.dir/src/main.cpp.o: CMakeFiles/vulkan_renderer.dir/flags.make
 CMakeFiles/vulkan_renderer.dir/src/main.cpp.o: /home/touchston3/code/vulkan_renderer/src/main.cpp
 CMakeFiles/vulkan_renderer.dir/src/main.cpp.o: CMakeFiles/vulkan_renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/vulkan_renderer.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vulkan_renderer.dir/src/main.cpp.o -MF CMakeFiles/vulkan_renderer.dir/src/main.cpp.o.d -o CMakeFiles/vulkan_renderer.dir/src/main.cpp.o -c /home/touchston3/code/vulkan_renderer/src/main.cpp
 
 CMakeFiles/vulkan_renderer.dir/src/main.cpp.i: cmake_force
@@ -113,21 +169,29 @@ CMakeFiles/vulkan_renderer.dir/src/main.cpp.s: cmake_force
 
 # Object files for target vulkan_renderer
 vulkan_renderer_OBJECTS = \
-"CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o" \
 "CMakeFiles/vulkan_renderer.dir/src/app.cpp.o" \
+"CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o" \
+"CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o" \
+"CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o" \
+"CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o" \
+"CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o" \
 "CMakeFiles/vulkan_renderer.dir/src/main.cpp.o"
 
 # External object files for target vulkan_renderer
 vulkan_renderer_EXTERNAL_OBJECTS =
 
-vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o
 vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/app.cpp.o
+vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o
+vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o
+vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o
+vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o
+vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o
 vulkan_renderer: CMakeFiles/vulkan_renderer.dir/src/main.cpp.o
 vulkan_renderer: CMakeFiles/vulkan_renderer.dir/build.make
 vulkan_renderer: /usr/lib/x86_64-linux-gnu/libvulkan.so
 vulkan_renderer: /usr/lib/x86_64-linux-gnu/libglfw.so.3.3
 vulkan_renderer: CMakeFiles/vulkan_renderer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable vulkan_renderer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable vulkan_renderer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vulkan_renderer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

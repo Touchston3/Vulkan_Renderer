@@ -8,8 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/touchston3/code/vulkan_renderer/src/Window.cpp" "CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/Window.cpp.o.d"
   "/home/touchston3/code/vulkan_renderer/src/app.cpp" "CMakeFiles/vulkan_renderer.dir/src/app.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/app.cpp.o.d"
+  "/home/touchston3/code/vulkan_renderer/src/gfx/Device.cpp" "CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/gfx/Device.cpp.o.d"
+  "/home/touchston3/code/vulkan_renderer/src/gfx/Instance.cpp" "CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o.d"
+  "/home/touchston3/code/vulkan_renderer/src/gfx/PhysicalDevice.cpp" "CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o.d"
+  "/home/touchston3/code/vulkan_renderer/src/gfx/Surface.cpp" "CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o.d"
+  "/home/touchston3/code/vulkan_renderer/src/gfx/Window.cpp" "CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/gfx/Window.cpp.o.d"
   "/home/touchston3/code/vulkan_renderer/src/main.cpp" "CMakeFiles/vulkan_renderer.dir/src/main.cpp.o" "gcc" "CMakeFiles/vulkan_renderer.dir/src/main.cpp.o.d"
   )
 
