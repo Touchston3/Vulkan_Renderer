@@ -1,65 +1,67 @@
 #include "Device.hpp"
 
 
+#include <cstdint>
 #include <iostream>
-#include <GLFW/glfw3.h>
-#include <vulkan/vulkan_structs.hpp>
 #include <vulkan/vulkan_core.h>
-#include <vulkan/vulkan_enums.hpp>
+#include "PhysicalDevice.hpp"
 
 using namespace std;
 namespace gfx
 {
-Device::Device(vk::PhysicalDevice physical_device, const vector<const char*>& validation_layers)
-{
-	bool has_graphics_queue_support = false;
-	uint32_t graphics_family_queue = 0;
-
-	auto queue_family_properties = (vector<vk::QueueFamilyProperties>) physical_device.getQueueFamilyProperties();
-
-	int i = 0;
-	for( auto queue_family : queue_family_properties )
+	Device::Device(PhysicalDevice& physical_device, const vector<const char*>& validation_layers, const vector<const char*>& device_extensions)
 	{
-		if( queue_family.queueFlags & vk::QueueFlagBits::eGraphics )
-		{	
-			has_graphics_queue_support = true;
-			graphics_family_queue = i;
+		bool has_graphics_queue_support = false;
+		uint32_t graphics_family_queue = 0;
+		
+		uint32_t queue_family_count = 0;
+		vkGetPhysicalDeviceQueueFamilyProperties(physical_device.get(), &queue_family_count, nullptr);
+		auto queue_family_properties = vector<VkQueueFamilyProperties>(queue_family_count);
+		vkGetPhysicalDeviceQueueFamilyProperties(physical_device.get(), &queue_family_count, queue_family_properties.data());
+		
+
+		int i = 0;
+		for( auto queue_family : queue_family_properties )
+		{
+			if( queue_family.queueFlags & VK_QUEUE_GRAPHICS_BIT )
+			{	
+				has_graphics_queue_support = true;
+				graphics_family_queue = i;
+			}
+			i++;
 		}
-		i++;
-	}
 
-	//setup logical device and graphics queue
-	float queue_priority = 1.f;
-	uint32_t queue_create_info_count = 1;
-	auto queue_create_info = vk::DeviceQueueCreateInfo
-		(
-			vk::DeviceQueueCreateFlags(),
-			graphics_family_queue,
-			1,
-			&queue_priority
-		);
+		//setup logical device and graphics queue
+		float queue_priority = 1.f;
+		uint32_t queue_create_info_count = 1;
+		auto queue_create_info = VkDeviceQueueCreateInfo
+		{
+			.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+			.flags = {},
+			.queueFamilyIndex = graphics_family_queue,
+			.queueCount = 1,
+			.pQueuePriorities = &queue_priority,
+		};
 
-	auto device_features = vk::PhysicalDeviceFeatures();
-	auto device_info = vk::DeviceCreateInfo
-		(
-			vk::DeviceCreateFlags(),
-			queue_create_info_count,
-			&queue_create_info,
-			static_cast<uint32_t>(validation_layers.size()),
-			validation_layers.data(),
-			0, nullptr,
-			&device_features
-		);
+		auto device_features = VkPhysicalDeviceFeatures();
+		auto device_info = VkDeviceCreateInfo
+		{
+			.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+			.flags = {},
+			.queueCreateInfoCount = queue_create_info_count,
+			.pQueueCreateInfos = &queue_create_info,
+			.enabledLayerCount = static_cast<uint32_t>(validation_layers.size()),
+			.ppEnabledLayerNames = validation_layers.data(),
+			.enabledExtensionCount = static_cast<uint32_t>(device_extensions.size()), 
+			.ppEnabledExtensionNames = device_extensions.data(),
+			.pEnabledFeatures = &device_features
+		};
 
-	try {
-		_device = physical_device.createDevice(device_info);
+		vkCreateDevice(physical_device.get(), &device_info, nullptr, &_device);
 		vkGetDeviceQueue(this->get(), graphics_family_queue, 0, &_queue);	
-	} catch( vk::SystemError e ) {
-		cout << e.what() << "\n";
 	}
-}
-Device::~Device()
-{
-	vkDestroyDevice(_device,nullptr);
-}
+	Device::~Device()
+	{
+		vkDestroyDevice(_device,nullptr);
+	}
 }

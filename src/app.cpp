@@ -14,9 +14,9 @@
 #include "utils.hpp"
 #include "gfx/Window.hpp"
 #include "gfx/Instance.hpp"
-#include "gfx/Device.hpp"
 #include "gfx/PhysicalDevice.hpp"
 #include "gfx/Surface.hpp"
+#include "gfx/Device.hpp"
 
 App::App(){}
 App::~App(){}
@@ -30,14 +30,9 @@ void App::run()
 	auto vk_validation_layers = std::vector<const char*>();
 	auto device_extensions = std::vector<const char*>();
 	{
-		vk_validation_layers = std::vector<const char*>
-		{
-			"VK_LAYER_KHRONOS_validation",
-		};
-		device_extensions = std::vector<const char*>
-		{
-			"VK_KHR_SWAPCHAIN_EXTENSION_NAME",
-		};
+		vk_validation_layers.push_back("VK_LAYER_KHRONOS_validation");
+		device_extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+
 		uint32_t vk_extension_count = 0;
 		uint32_t vk_layer_count = 0;
 		vkEnumerateInstanceExtensionProperties(nullptr, &vk_extension_count, nullptr);
@@ -48,11 +43,9 @@ void App::run()
 
 		vkEnumerateInstanceExtensionProperties(nullptr, &vk_extension_count, vk_extensions.data());
 		vkEnumerateInstanceLayerProperties(&vk_layer_count, vk_layer_properties.data());
-	}
-		
-
 
 		// TODO: Enumerate extensions and layers and check if they include the things we need. 
+	}
 		
 	//Create Instance
 	auto vulkan_instance = gfx::Instance(window, vk_validation_layers);
@@ -60,13 +53,45 @@ void App::run()
 	//Create Physical Device
 	auto physical_device = gfx::PhysicalDevice(vulkan_instance);
 
-	auto device = gfx::Device(physical_device.get(), vk_validation_layers);
-
-
+	//Create Logical Device
+	auto device = gfx::Device(physical_device, vk_validation_layers, device_extensions);
+	
 	//Create Surface
 	auto surface = gfx::Surface(&vulkan_instance, window);
+	{
+		uint32_t surface_format_cout = 0;
+		uint32_t present_mode_count = 0;
+		vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.get(), surface.get(), &surface_format_cout, nullptr);
+		vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.get(), surface.get(), &present_mode_count, nullptr);
+		auto surface_formats = std::vector<VkSurfaceFormatKHR>(surface_format_cout);
+		auto surface_present_modes = std::vector<VkPresentModeKHR>(present_mode_count);
+		vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.get(), surface.get(), &surface_format_cout, surface_formats.data());
+		vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.get(), surface.get(), &present_mode_count, surface_present_modes.data());
 
-	
+
+		//Choose swapchain format
+
+		auto active_format = VkSurfaceFormatKHR();
+		for( auto surface_format : surface_formats )
+		{
+			if( surface_format.format == VK_FORMAT_B8G8R8A8_SRGB && surface_format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR )
+				active_format = surface_format;
+		}
+
+		//Choose present mode
+		auto active_surface_present_mode = VK_PRESENT_MODE_FIFO_KHR;
+		for( auto surface_present_mode : surface_present_modes )
+		{
+			if( surface_present_mode == VK_PRESENT_MODE_MAILBOX_KHR )
+				active_surface_present_mode = surface_present_mode;
+		}
+
+		//Set swapchain image resolution
+		int pixel_width, pixel_height = 0;
+		glfwGetFramebufferSize(window.get(), &pixel_width, &pixel_height);
+
+	}
+
 	auto vert_shader_binaries = (std::vector<char>) utils::load_shader("../../resources/shaders/bin/test.vert.spv");
 	auto frag_shader_binaries = (std::vector<char>) utils::load_shader("../../resources/shaders/bin/test.frag.spv");
 	
