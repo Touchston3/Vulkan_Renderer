@@ -249,6 +249,30 @@ src/gfx/Surface.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.s
 .PHONY : src/gfx/Surface.cpp.s
 
+src/gfx/SwapChain.o: src/gfx/SwapChain.cpp.o
+.PHONY : src/gfx/SwapChain.o
+
+# target to build an object file
+src/gfx/SwapChain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/SwapChain.cpp.o
+.PHONY : src/gfx/SwapChain.cpp.o
+
+src/gfx/SwapChain.i: src/gfx/SwapChain.cpp.i
+.PHONY : src/gfx/SwapChain.i
+
+# target to preprocess a source file
+src/gfx/SwapChain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/SwapChain.cpp.i
+.PHONY : src/gfx/SwapChain.cpp.i
+
+src/gfx/SwapChain.s: src/gfx/SwapChain.cpp.s
+.PHONY : src/gfx/SwapChain.s
+
+# target to generate assembly for a file
+src/gfx/SwapChain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/SwapChain.cpp.s
+.PHONY : src/gfx/SwapChain.cpp.s
+
 src/gfx/Window.o: src/gfx/Window.cpp.o
 .PHONY : src/gfx/Window.o
 
@@ -321,6 +345,9 @@ help:
 	@echo "... src/gfx/Surface.o"
 	@echo "... src/gfx/Surface.i"
 	@echo "... src/gfx/Surface.s"
+	@echo "... src/gfx/SwapChain.o"
+	@echo "... src/gfx/SwapChain.i"
+	@echo "... src/gfx/SwapChain.s"
 	@echo "... src/gfx/Window.o"
 	@echo "... src/gfx/Window.i"
 	@echo "... src/gfx/Window.s"

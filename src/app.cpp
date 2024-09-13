@@ -1,4 +1,3 @@
-#include <cstdint>
 #define GLFW_INCLUDE_VULKAN
 #define VK_VERSION_1_0
 
@@ -9,6 +8,7 @@
 #include <vulkan/vulkan_core.h>
 #include <vulkan/vulkan_enums.hpp>
 #include <vector>
+#include <cstdint>
 
 #include "app.hpp"
 #include "utils.hpp"
@@ -17,6 +17,7 @@
 #include "gfx/PhysicalDevice.hpp"
 #include "gfx/Surface.hpp"
 #include "gfx/Device.hpp"
+#include "gfx/SwapChain.hpp"
 
 App::App(){}
 App::~App(){}
@@ -58,40 +59,8 @@ void App::run()
 	
 	//Create Surface
 	auto surface = gfx::Surface(&vulkan_instance, window);
-	{
-		uint32_t surface_format_cout = 0;
-		uint32_t present_mode_count = 0;
-		vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.get(), surface.get(), &surface_format_cout, nullptr);
-		vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.get(), surface.get(), &present_mode_count, nullptr);
-		auto surface_formats = std::vector<VkSurfaceFormatKHR>(surface_format_cout);
-		auto surface_present_modes = std::vector<VkPresentModeKHR>(present_mode_count);
-		vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.get(), surface.get(), &surface_format_cout, surface_formats.data());
-		vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.get(), surface.get(), &present_mode_count, surface_present_modes.data());
 
-
-		//Choose swapchain format
-
-		auto active_format = VkSurfaceFormatKHR();
-		for( auto surface_format : surface_formats )
-		{
-			if( surface_format.format == VK_FORMAT_B8G8R8A8_SRGB && surface_format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR )
-				active_format = surface_format;
-		}
-
-		//Choose present mode
-		auto active_surface_present_mode = VK_PRESENT_MODE_FIFO_KHR;
-		for( auto surface_present_mode : surface_present_modes )
-		{
-			if( surface_present_mode == VK_PRESENT_MODE_MAILBOX_KHR )
-				active_surface_present_mode = surface_present_mode;
-		}
-
-		//Set swapchain image resolution
-		int pixel_width, pixel_height = 0;
-		glfwGetFramebufferSize(window.get(), &pixel_width, &pixel_height);
-
-	}
-
+	auto swap_chain = gfx::SwapChain(&device, physical_device, surface);
 	auto vert_shader_binaries = (std::vector<char>) utils::load_shader("../../resources/shaders/bin/test.vert.spv");
 	auto frag_shader_binaries = (std::vector<char>) utils::load_shader("../../resources/shaders/bin/test.frag.spv");
 	
@@ -102,7 +71,6 @@ void App::run()
 	{
 		glfwPollEvents();
 	}
-
 
 }
 
