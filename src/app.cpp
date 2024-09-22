@@ -1,7 +1,6 @@
 #define GLFW_INCLUDE_VULKAN
 #define VK_VERSION_1_0
 
-#include <iostream>
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.hpp>
 #include <vulkan/vulkan_structs.hpp>
@@ -11,7 +10,7 @@
 #include <cstdint>
 
 #include "app.hpp"
-#include "utils.hpp"
+#include "utils/utils.hpp"
 #include "gfx/Window.hpp"
 #include "gfx/Instance.hpp"
 #include "gfx/PhysicalDevice.hpp"
@@ -58,13 +57,12 @@ void App::run()
 	auto device = gfx::Device(physical_device, vk_validation_layers, device_extensions);
 	
 	//Create Surface
-	auto surface = gfx::Surface(&vulkan_instance, window);
+	auto surface = gfx::Surface{ &vulkan_instance, window };
 
 	auto swap_chain = gfx::SwapChain(&device, physical_device, surface);
+
 	auto vert_shader_binaries = (std::vector<char>) utils::load_shader("../../resources/shaders/bin/test.vert.spv");
 	auto frag_shader_binaries = (std::vector<char>) utils::load_shader("../../resources/shaders/bin/test.frag.spv");
-	
-
 
 
 	while( !window.should_close() )

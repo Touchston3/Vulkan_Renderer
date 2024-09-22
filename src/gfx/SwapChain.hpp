@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <vector>
 
 #include "Device.hpp"
 #include "PhysicalDevice.hpp"
@@ -14,6 +15,8 @@ namespace gfx
 			~SwapChain();
 	
 			inline VkSwapchainKHR& get() { return _swap_chain; }
+			std::vector<VkImage> _images;
+			std::vector<VkImageView> _image_views;
 		private:
 			VkSwapchainKHR _swap_chain;	
 			Device* _device;
