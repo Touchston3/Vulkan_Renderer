@@ -1,0 +1,16 @@
+{
+    "version": 4,
+	"configurePresets": [
+		{
+			"name": "default",
+			"binaryDir": "${sourceDir}/out/build",
+			"cacheVariables": {
+				"CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vendor/build/Release/generators/conan_toolchain.cmake", 
+				"glfw3_DIR": "${sourceDir}/vendor/build/Release/generators",
+				"opengl_system_DIR": "${sourceDir}/vendor/build/Release/generators",
+				"xorg_DIR": "${sourceDir}/vendor/build/Release/generators"
+			}
+		}
+	]
+	
+}

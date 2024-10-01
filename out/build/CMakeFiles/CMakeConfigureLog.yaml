@@ -533,3 +533,43 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "vcpkg_installed/x64-linux/share/glfw3/glfw3Config.cmake:2 (find_dependency)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/CMakeScratch/TryCompile-jPQliJ"
+      binary: "/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/CMakeScratch/TryCompile-jPQliJ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/CMakeScratch/TryCompile-jPQliJ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_500fc/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_500fc.dir/build.make CMakeFiles/cmTC_500fc.dir/build
+        gmake[1]: Entering directory '/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/CMakeScratch/TryCompile-jPQliJ'
+        Building C object CMakeFiles/cmTC_500fc.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_500fc.dir/src.c.o -c /home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/CMakeScratch/TryCompile-jPQliJ/src.c
+        Linking C executable cmTC_500fc
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_500fc.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_500fc.dir/src.c.o -o cmTC_500fc 
+        gmake[1]: Leaving directory '/home/touchston3/code/vulkan_renderer/out/build/CMakeFiles/CMakeScratch/TryCompile-jPQliJ'
+        
+      exitCode: 0
+...

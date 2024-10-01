@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -isystem /home/touchston3/.conan2/p/b/glfwca25141399d6f/p/include
 
-CXX_FLAGS = -std=gnu++23
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++23
 

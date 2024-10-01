@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/vulkan_renderer.dir/src/gfx/Instance.cpp.o.d"
   "CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o"
   "CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.o.d"
+  "CMakeFiles/vulkan_renderer.dir/src/gfx/Pipeline.cpp.o"
+  "CMakeFiles/vulkan_renderer.dir/src/gfx/Pipeline.cpp.o.d"
   "CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o"
   "CMakeFiles/vulkan_renderer.dir/src/gfx/Surface.cpp.o.d"
   "CMakeFiles/vulkan_renderer.dir/src/gfx/SwapChain.cpp.o"

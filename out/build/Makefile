@@ -225,6 +225,30 @@ src/gfx/PhysicalDevice.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/PhysicalDevice.cpp.s
 .PHONY : src/gfx/PhysicalDevice.cpp.s
 
+src/gfx/Pipeline.o: src/gfx/Pipeline.cpp.o
+.PHONY : src/gfx/Pipeline.o
+
+# target to build an object file
+src/gfx/Pipeline.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Pipeline.cpp.o
+.PHONY : src/gfx/Pipeline.cpp.o
+
+src/gfx/Pipeline.i: src/gfx/Pipeline.cpp.i
+.PHONY : src/gfx/Pipeline.i
+
+# target to preprocess a source file
+src/gfx/Pipeline.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Pipeline.cpp.i
+.PHONY : src/gfx/Pipeline.cpp.i
+
+src/gfx/Pipeline.s: src/gfx/Pipeline.cpp.s
+.PHONY : src/gfx/Pipeline.s
+
+# target to generate assembly for a file
+src/gfx/Pipeline.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vulkan_renderer.dir/build.make CMakeFiles/vulkan_renderer.dir/src/gfx/Pipeline.cpp.s
+.PHONY : src/gfx/Pipeline.cpp.s
+
 src/gfx/Surface.o: src/gfx/Surface.cpp.o
 .PHONY : src/gfx/Surface.o
 
@@ -342,6 +366,9 @@ help:
 	@echo "... src/gfx/PhysicalDevice.o"
 	@echo "... src/gfx/PhysicalDevice.i"
 	@echo "... src/gfx/PhysicalDevice.s"
+	@echo "... src/gfx/Pipeline.o"
+	@echo "... src/gfx/Pipeline.i"
+	@echo "... src/gfx/Pipeline.s"
 	@echo "... src/gfx/Surface.o"
 	@echo "... src/gfx/Surface.i"
 	@echo "... src/gfx/Surface.s"

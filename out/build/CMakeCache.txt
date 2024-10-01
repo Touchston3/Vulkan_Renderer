@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -224,6 +224,9 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/home/touchston3/code/vulkan_renderer/vendor/build/Release/generators/conan_toolchain.cmake
+
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
@@ -270,7 +273,7 @@ OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenGL.so
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
 
 //Path to a program.
-Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-NOTFOUND
+Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=/bin/glslangValidator
 
 //Path to a program.
 Vulkan_GLSLC_EXECUTABLE:FILEPATH=/bin/glslc
@@ -281,11 +284,17 @@ Vulkan_INCLUDE_DIR:PATH=/usr/include
 //Path to a library.
 Vulkan_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libvulkan.so
 
-//The directory containing a CMake configuration file for glfw3.
-glfw3_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/glfw3
+//No help, variable specified on the command line.
+glfw3_DIR:UNINITIALIZED=/home/touchston3/code/vulkan_renderer/vendor/build/Release/generators
+
+//No help, variable specified on the command line.
+glfw_DIR:UNINITIALIZED=/home/touchston3/code/vulkan_renderer/vendor/build/Release/generators
 
 //The directory containing a CMake configuration file for libglfw3.
 libglfw3_DIR:PATH=libglfw3_DIR-NOTFOUND
+
+//No help, variable specified on the command line.
+opengl_system_DIR:UNINITIALIZED=/home/touchston3/code/vulkan_renderer/vendor/build/Release/generators
 
 //The directory containing a CMake configuration file for vulkan.
 vulkan_DIR:PATH=vulkan_DIR-NOTFOUND
@@ -298,6 +307,9 @@ vulkan_renderer_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 vulkan_renderer_SOURCE_DIR:STATIC=/home/touchston3/code/vulkan_renderer
+
+//No help, variable specified on the command line.
+xorg_DIR:UNINITIALIZED=/home/touchston3/code/vulkan_renderer/vendor/build/Release/generators
 
 
 ########################
@@ -382,6 +394,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/touchston3/code/vulkan_renderer
@@ -451,8 +465,10 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenGL.so][/usr/lib/x86_64-linux-gnu/libGLX.so][/usr/include][c ][v()]
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding Vulkan
-FIND_PACKAGE_MESSAGE_DETAILS_Vulkan:INTERNAL=[/usr/lib/x86_64-linux-gnu/libvulkan.so][/usr/include][cfound components: glslc missing components: glslangValidator][v1.3.275()]
+FIND_PACKAGE_MESSAGE_DETAILS_Vulkan:INTERNAL=[/usr/lib/x86_64-linux-gnu/libvulkan.so][/usr/include][cfound components: glslc glslangValidator ][v1.3.275()]
 //ADVANCED property for variable: OPENGL_EGL_INCLUDE_DIR
 OPENGL_EGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_GLES2_INCLUDE_DIR
