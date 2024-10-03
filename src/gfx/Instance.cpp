@@ -1,4 +1,5 @@
 #include <vulkan/vulkan_core.h>
+#include "../utils/Exception.hpp"
 #include "Instance.hpp"
 
 using namespace std;
@@ -29,8 +30,9 @@ namespace gfx
 		};
 
 		auto create_instance_result = (VkResult) vkCreateInstance( &instance_info, nullptr, &_instance );
-		if( create_instance_result != VkResult::VK_SUCCESS )
-		{}
+		if( create_instance_result != VkResult::VK_SUCCESS ) { 
+			throw Utils::Exception<int>{ "Create Vulkan Instance Issue" };
+		}
 	}
 
 	Instance::~Instance(){ vkDestroyInstance(this->get(), nullptr); }

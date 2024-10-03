@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-namespace utils
+namespace Utils
 {
 	inline std::vector<char> load_shader(const std::string& file_path)
 	{

@@ -1,3 +1,4 @@
+#This whole thing is cursed. Gonna redo it at somepoint so I don't need to manually link the binaries.
 cmake_minimum_required(VERSION 3.29.2)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_SCAN_FOR_MODULES 0)

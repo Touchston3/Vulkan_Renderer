@@ -1,6 +1,7 @@
 
 #include "Window.hpp"
 #include <iostream>
+#include "../utils/Exception.hpp"
 
 using namespace std;
 namespace gfx
@@ -16,7 +17,7 @@ Window::Window(uint32_t width, uint32_t height, const string& name) :
 	_height = height;
 	_name = name;
 	if( !glfwInit() )
-		std::cout << "Error in GLFW Init \n";
+		throw Utils::Exception<int>{ "GLFW Init Error" };
 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	_window = (unique_ptr<GLFWwindow, GLFWwindow_deleter>) glfwCreateWindow

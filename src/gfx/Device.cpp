@@ -2,14 +2,13 @@
 
 
 #include <cstdint>
-#include <iostream>
 #include <vulkan/vulkan_core.h>
 #include "PhysicalDevice.hpp"
 
 using namespace std;
 namespace gfx
 {
-	Device::Device(PhysicalDevice& physical_device, const vector<const char*>& validation_layers, const vector<const char*>& device_extensions)
+	Device::Device(PhysicalDevice& physical_device, const vector<const char*>& validation_layers, Device::Extensions& extensions)
 	{
 		bool has_graphics_queue_support = false;
 		uint32_t graphics_family_queue = 0;
@@ -21,10 +20,8 @@ namespace gfx
 		
 
 		int i = 0;
-		for( auto queue_family : queue_family_properties )
-		{
-			if( queue_family.queueFlags & VK_QUEUE_GRAPHICS_BIT )
-			{	
+		for( auto queue_family : queue_family_properties ) {
+			if( queue_family.queueFlags & VK_QUEUE_GRAPHICS_BIT ) {	
 				has_graphics_queue_support = true;
 				graphics_family_queue = i;
 			}
@@ -34,8 +31,7 @@ namespace gfx
 		//setup logical device and graphics queue
 		float queue_priority = 1.f;
 		uint32_t queue_create_info_count = 1;
-		auto queue_create_info = VkDeviceQueueCreateInfo
-		{
+		auto queue_create_info = VkDeviceQueueCreateInfo {
 			.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
 			.flags = {},
 			.queueFamilyIndex = graphics_family_queue,
@@ -43,22 +39,21 @@ namespace gfx
 			.pQueuePriorities = &queue_priority,
 		};
 
-		auto device_features = VkPhysicalDeviceFeatures();
-		auto device_info = VkDeviceCreateInfo
-		{
+		auto device_features = VkPhysicalDeviceFeatures{};
+		auto device_info = VkDeviceCreateInfo {
 			.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
 			.flags = {},
 			.queueCreateInfoCount = queue_create_info_count,
 			.pQueueCreateInfos = &queue_create_info,
 			.enabledLayerCount = static_cast<uint32_t>(validation_layers.size()),
 			.ppEnabledLayerNames = validation_layers.data(),
-			.enabledExtensionCount = static_cast<uint32_t>(device_extensions.size()), 
-			.ppEnabledExtensionNames = device_extensions.data(),
+			.enabledExtensionCount = static_cast<uint32_t>(extensions.get().size()), 
+			.ppEnabledExtensionNames = extensions.get().data(),
 			.pEnabledFeatures = &device_features
 		};
 
-		vkCreateDevice(physical_device.get(), &device_info, nullptr, &_device);
-		vkGetDeviceQueue(this->get(), graphics_family_queue, 0, &_queue);	
+		vkCreateDevice( physical_device.get(), &device_info, nullptr, &_device );
+		vkGetDeviceQueue( this->get(), graphics_family_queue, 0, &_queue );	
 	}
 	Device::~Device()
 	{
