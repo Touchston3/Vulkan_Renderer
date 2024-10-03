@@ -1,2 +1,5 @@
-/out/*
-/vendor/*
+/build
+/vendor
+/vcpkg_installed
+vcpkg-configuration.json
+vcpkg.json

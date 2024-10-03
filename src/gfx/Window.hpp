@@ -1,6 +1,5 @@
 #pragma once
-
-#include <GLFW>
+#include "../../vendor/glfw3/include/GLFW/glfw3.h" //I need to fix this
 #include <cstdint>
 #include <vector>
 #include <memory>
