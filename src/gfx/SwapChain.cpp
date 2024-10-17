@@ -1,29 +1,51 @@
 #include "SwapChain.hpp"
+#include "../utils/Exception.hpp"
+#include <algorithm>
+#include <cstdint>
 #include <vulkan/vulkan_core.h>
 
-namespace gfx
-{
-	SwapChain::SwapChain(Device* device, PhysicalDevice& physical_device, Surface& surface) :
-		_device{ nullptr },
-		_images{ std::vector<VkImage>{} },
-		_image_views{ std::vector<VkImageView>{} },
-		_swap_chain{ VkSwapchainKHR{} }
-	{
-		_device = device;
+namespace gfx {
 
+	SwapChain::SwapChain(Device* device, PhysicalDevice& physical_device, Surface& surface, Window& window) :
+		_images{},
+		_image_views{},
+		_device{ device },
+		_swap_chain{}
+	{
 		uint32_t surface_format_cout = 0;
 		uint32_t present_mode_count = 0;
-		vkGetPhysicalDeviceSurfaceFormatsKHR( physical_device.get(), surface.get(), &surface_format_cout, nullptr );
-		vkGetPhysicalDeviceSurfacePresentModesKHR( physical_device.get(), surface.get(), &present_mode_count, nullptr );
+
+		vkGetPhysicalDeviceSurfaceFormatsKHR( 
+			physical_device.get(),
+			surface.get(),
+			&surface_format_cout,
+			nullptr 
+		);
+		vkGetPhysicalDeviceSurfacePresentModesKHR( 
+			physical_device.get(),
+			surface.get(),
+			&present_mode_count, 
+			nullptr 
+		);
 
 		auto surface_formats = std::vector<VkSurfaceFormatKHR>{ surface_format_cout };
 		auto surface_present_modes = std::vector<VkPresentModeKHR>{ present_mode_count };
-		vkGetPhysicalDeviceSurfaceFormatsKHR( physical_device.get(), surface.get(), &surface_format_cout, surface_formats.data() );
-		vkGetPhysicalDeviceSurfacePresentModesKHR( physical_device.get(), surface.get(), &present_mode_count, surface_present_modes.data() );
+
+		vkGetPhysicalDeviceSurfaceFormatsKHR(
+			physical_device.get(),
+			surface.get(),
+			&surface_format_cout,
+			surface_formats.data() 
+		);
+		vkGetPhysicalDeviceSurfacePresentModesKHR( 
+			physical_device.get(),
+			surface.get(),
+			&present_mode_count,
+			surface_present_modes.data() 
+		);
 
 
 		//Choose swapchain format
-
 		auto active_format = VkSurfaceFormatKHR{};
 		for( auto surface_format : surface_formats )
 		{
@@ -41,16 +63,23 @@ namespace gfx
 
 		//Set swapchain image resolution
 		auto surface_capabilities = VkSurfaceCapabilitiesKHR{};
-		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device.get(), surface.get(), &surface_capabilities);
+		vkGetPhysicalDeviceSurfaceCapabilitiesKHR( physical_device.get(), surface.get(), &surface_capabilities );
 
-		auto swap_chain_create_info = VkSwapchainCreateInfoKHR
-		{
+		//Figure out image extent
+		int width, height;
+		glfwGetFramebufferSize( window.get(), &width, &height );
+		auto image_extent = VkExtent2D {
+			std::clamp( static_cast<uint32_t>(width), surface_capabilities.minImageExtent.width, surface_capabilities.maxImageExtent.width ),
+			std::clamp( static_cast<uint32_t>(height), surface_capabilities.minImageExtent.height, surface_capabilities.maxImageExtent.height )
+		};
+	
+		auto swap_chain_create_info = VkSwapchainCreateInfoKHR {
 			.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR,
 			.surface = surface.get(),
 			.minImageCount = surface_capabilities.minImageCount+1,
 			.imageFormat = active_format.format,
 			.imageColorSpace = active_format.colorSpace,
-			.imageExtent = surface_capabilities.currentExtent,
+			.imageExtent = image_extent,
 			.imageArrayLayers = 1,
 			.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT,
 			.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE, // Based on if graphics family queue and present queue are the same
@@ -62,34 +91,49 @@ namespace gfx
 			.clipped = VK_TRUE,
 			.oldSwapchain = VK_NULL_HANDLE,
 		};
-		vkCreateSwapchainKHR(_device->get(), &swap_chain_create_info, nullptr, &_swap_chain);
+		if( vkCreateSwapchainKHR(
+			_device->get(), 
+			&swap_chain_create_info, 
+			nullptr,
+			&_swap_chain 
+		) != VkResult::VK_SUCCESS ){
+			throw Utils::Exception<int>{};
+		}
 
 		//Create Images and Image Views
 		{
 			uint32_t image_count = 0;
-			vkGetSwapchainImagesKHR(_device->get(), _swap_chain, &image_count, nullptr);
+
+			vkGetSwapchainImagesKHR(
+				_device->get(), 
+				_swap_chain,
+				&image_count,
+				nullptr 
+			);
 			_images.resize(image_count);
 			_image_views.resize(image_count);
-			vkGetSwapchainImagesKHR(_device->get(), _swap_chain, &image_count, _images.data());
+
+			vkGetSwapchainImagesKHR( 
+				_device->get(), 
+				_swap_chain,
+				&image_count,
+				_images.data() 
+			);
 		
-			for( size_t i = 0; i < image_count; i++ )
-			{
-				auto image_view_info = VkImageViewCreateInfo 
-				{
+			for( size_t i = 0; i < image_count; i++ ) {
+				auto image_view_info = VkImageViewCreateInfo {
 					.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
 					.flags = {},
 					.image = _images[i],
 					.viewType = VK_IMAGE_VIEW_TYPE_2D,
 					.format = active_format.format,
-					.components = 
-					{
+					.components = {
 						.r = VK_COMPONENT_SWIZZLE_IDENTITY,
 						.g = VK_COMPONENT_SWIZZLE_IDENTITY,
 						.b = VK_COMPONENT_SWIZZLE_IDENTITY,
 						.a = VK_COMPONENT_SWIZZLE_IDENTITY,
 					},
-					.subresourceRange = 
-					{
+					.subresourceRange = {
 						.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
 						.baseMipLevel = 0,
 						.levelCount = 1,
@@ -97,16 +141,24 @@ namespace gfx
 						.layerCount = 1,
 					},
 				};
-				vkCreateImageView(_device->get(), &image_view_info, nullptr, &_image_views[i]);	
+
+				if( vkCreateImageView(
+					_device->get(),
+					&image_view_info,
+					nullptr,
+					&_image_views[i] 
+				) != VkResult::VK_SUCCESS ) {
+					throw Utils::Exception<int>{};
+				}
 			}
 		}
 	}
 
 
-	SwapChain::~SwapChain()
-	{
+	SwapChain::~SwapChain() {
 		for( auto image_view : _image_views )
 			vkDestroyImageView(_device->get(), image_view, nullptr);	
+
 		vkDestroySwapchainKHR(_device->get(), _swap_chain, nullptr);
 	}
 }

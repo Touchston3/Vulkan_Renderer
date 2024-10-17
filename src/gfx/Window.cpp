@@ -4,42 +4,44 @@
 #include "../utils/Exception.hpp"
 
 using namespace std;
-namespace gfx
-{
-Window::Window(uint32_t width, uint32_t height, const string& name) :
-	_width(0),
-	_height(0),
-	_name(""),
-	_extensions(vector<const char*>()),
-	_window(nullptr)
-{
-	_width = width;
-	_height = height;
-	_name = name;
-	if( !glfwInit() )
-		throw Utils::Exception<int>{ "GLFW Init Error" };
 
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	_window = (unique_ptr<GLFWwindow, GLFWwindow_deleter>) glfwCreateWindow
-		(
+namespace gfx {
+
+	Window::Window(uint32_t width, uint32_t height, const string& name) :
+		_width{ width },
+		_height{ height },
+		_name{ name },
+		_extensions{},
+		_window{}
+	{
+		if( !glfwInit() )
+			throw Utils::Exception<int>{ "GLFW Init Error" };
+
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		if( glfwPlatformSupported(GLFW_PLATFORM_WAYLAND) ) //So I just learned that Hyprland will not show a window if there is no framebuffer. So no good sanity check for this anymore XD
+			glfwWindowHint(GLFW_PLATFORM, GLFW_PLATFORM_WAYLAND);
+
+		_window = (unique_ptr<GLFWwindow, GLFWwindow_deleter>) glfwCreateWindow (
 			_width, 
 			_height,
 			_name.c_str(),
 			nullptr, 
-			nullptr
+			nullptr 
 		);
+		if( _window == nullptr )
+			throw Utils::Exception<int>( "Window Create Failed" );
 
-	uint32_t extension_count = 0;
-	auto extensions_raw = (const char**) glfwGetRequiredInstanceExtensions(&extension_count);
+		uint32_t extension_count = 0;
+		auto extensions_raw = (const char**) glfwGetRequiredInstanceExtensions(&extension_count);
 
-	_extensions = vector<const char*> ( extensions_raw, extensions_raw + extension_count );
-	_extensions.push_back("VK_EXT_debug_utils");
-}
+		_extensions = vector<const char*> ( extensions_raw, extensions_raw + extension_count );
+		_extensions.push_back("VK_EXT_debug_utils");
+	}
 
-Window::~Window()
-{
-	glfwTerminate();
-}
+	Window::~Window()
+	{
+		glfwTerminate();
+	}
 
-bool Window::should_close(){ return glfwWindowShouldClose( this->get() ); }
+	bool Window::should_close(){ return glfwWindowShouldClose( this->get() ); }
 }

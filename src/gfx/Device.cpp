@@ -6,17 +6,20 @@
 #include "PhysicalDevice.hpp"
 
 using namespace std;
-namespace gfx
-{
-	Device::Device(PhysicalDevice& physical_device, const vector<const char*>& validation_layers, Device::Extensions& extensions)
+
+namespace gfx {
+	Device::Device( PhysicalDevice& physical_device, const vector<const char*>& validation_layers, Device::Extensions& extensions ) :
+		_queue{},
+		_device{}
 	{
+
 		bool has_graphics_queue_support = false;
 		uint32_t graphics_family_queue = 0;
 		
 		uint32_t queue_family_count = 0;
-		vkGetPhysicalDeviceQueueFamilyProperties(physical_device.get(), &queue_family_count, nullptr);
-		auto queue_family_properties = vector<VkQueueFamilyProperties>(queue_family_count);
-		vkGetPhysicalDeviceQueueFamilyProperties(physical_device.get(), &queue_family_count, queue_family_properties.data());
+		vkGetPhysicalDeviceQueueFamilyProperties( physical_device.get(), &queue_family_count, nullptr );
+		auto queue_family_properties = vector<VkQueueFamilyProperties>{ queue_family_count };
+		vkGetPhysicalDeviceQueueFamilyProperties( physical_device.get(), &queue_family_count, queue_family_properties.data() );
 		
 
 		int i = 0;
@@ -52,11 +55,21 @@ namespace gfx
 			.pEnabledFeatures = &device_features
 		};
 
-		vkCreateDevice( physical_device.get(), &device_info, nullptr, &_device );
-		vkGetDeviceQueue( this->get(), graphics_family_queue, 0, &_queue );	
+		vkCreateDevice( 
+			physical_device.get(),
+			&device_info,
+			nullptr,
+			&_device 
+		);
+
+		vkGetDeviceQueue(
+			this->get(),
+			graphics_family_queue,
+			0,
+			&_queue 
+		);	
 	}
-	Device::~Device()
-	{
-		vkDestroyDevice(_device,nullptr);
+	Device::~Device() {
+		vkDestroyDevice( _device, nullptr );
 	}
 }
