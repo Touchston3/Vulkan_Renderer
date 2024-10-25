@@ -9,6 +9,7 @@ namespace gfx {
 	SwapChain::SwapChain(Device* device, PhysicalDevice& physical_device, Surface& surface, Window& window) :
 		_images{},
 		_image_views{},
+		_image_extent{},
 		_device{ device },
 		_swap_chain{}
 	{
@@ -68,7 +69,7 @@ namespace gfx {
 		//Figure out image extent
 		int width, height;
 		glfwGetFramebufferSize( window.get(), &width, &height );
-		auto image_extent = VkExtent2D {
+		_image_extent = VkExtent2D {
 			std::clamp( static_cast<uint32_t>(width), surface_capabilities.minImageExtent.width, surface_capabilities.maxImageExtent.width ),
 			std::clamp( static_cast<uint32_t>(height), surface_capabilities.minImageExtent.height, surface_capabilities.maxImageExtent.height )
 		};
@@ -79,7 +80,7 @@ namespace gfx {
 			.minImageCount = surface_capabilities.minImageCount+1,
 			.imageFormat = active_format.format,
 			.imageColorSpace = active_format.colorSpace,
-			.imageExtent = image_extent,
+			.imageExtent = _image_extent,
 			.imageArrayLayers = 1,
 			.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT,
 			.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE, // Based on if graphics family queue and present queue are the same

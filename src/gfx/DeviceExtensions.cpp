@@ -1,6 +1,5 @@
 #include "Device.hpp"
 #include "iostream"
-#include "../../vendor/glfw3/include/GLFW/glfw3.h"
 
 namespace gfx {
 	Device::Extensions::Extensions( const std::vector<const char*>& required_extensions ) :

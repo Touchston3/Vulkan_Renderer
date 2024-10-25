@@ -1,5 +1,5 @@
 #include "app.hpp"
-#include "iostream"
+#include <iostream>
 #include "utils/Exception.hpp"
 
 int main()
@@ -11,7 +11,7 @@ int main()
 		app.cleanup();
 	}
 	catch( Utils::Exception<int> e ) {
-		std::cout << e._message << "\n";
+		e.print();	
 	}
 	catch( std::exception e ) {
 		std::cout << e.what() << "\n";

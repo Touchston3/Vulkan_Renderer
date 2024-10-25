@@ -1,31 +1,26 @@
 #This whole thing is cursed. Gonna redo it at somepoint so I don't need to manually link the binaries.
-cmake_minimum_required(VERSION 3.29.2)
+cmake_minimum_required(VERSION 3.22)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_SCAN_FOR_MODULES 0)
-include(FetchContent)
+##set(CMAKE_TOOLCHAIN_FILE CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake) saving this for when I finally figure out glfw linking
 
 project(vulkan_renderer)
+set(VENDOR_PATH ${CMAKE_CURRENT_SOURCE_DIR}/vendor)
 
-FetchContent_Declare(backward
-    GIT_REPOSITORY https://github.com/bombela/backward-cpp
-    GIT_TAG master  # or a version tag, such as v1.6
-    SYSTEM          # optional, the Backward include directory will be treated as system directory
-)
-FetchContent_MakeAvailable(backward)
-
-set(glfw_include_path ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw3/include)
-
-file(GLOB_RECURSE source_files ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-file(GLOB_RECURSE header_files ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h ${glfw_include_path}/* )
+file(GLOB_RECURSE source_files ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
+file(GLOB_RECURSE header_files ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h )
 
 
 find_package(Vulkan REQUIRED)
-#find_package(glfw3 REQUIRED) -- This just isn't working with vcpkg or conan on my linux mint machine. Works great if I install via apt tho 
+#find_package(glfw3 REQUIRED) 
+#find_package(Backward  REQUIRED )
 
 add_executable(Renderer ${source_files} ${header_files})
-target_include_directories(Renderer PUBLIC vendor/glfw3/include)
-target_link_libraries(Renderer 
-	${Vulkan_LIBRARIES} 
-	${PROJECT_SOURCE_DIR}/vendor/glfw3/lib/libglfw3.a 
-	Backward::Interface
+
+
+target_link_libraries(Renderer PRIVATE 
+	${Vulkan_LIBRARY}
+	${VENDOR_PATH}/lib/libglfw3.a ##WHY IS GLFW SUCH A PROBLEM CHILD?
+	${VENDOR_PATH}/lib/libbackward.a
+	
 )

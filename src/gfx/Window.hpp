@@ -1,5 +1,5 @@
 #pragma once
-#include "../../vendor/glfw3/include/GLFW/glfw3.h" //I need to fix this
+#include "../../vcpkg_installed/x64-linux/include/GLFW/glfw3.h"
 #include <cstdint>
 #include <vector>
 #include <memory>

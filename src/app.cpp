@@ -1,5 +1,6 @@
+#include "gfx/Pipeline.hpp"
 #define GLFW_INCLUDE_VULKAN
-#define VK_VERSION_1_0
+//#define VK_VERSION_1_0
 
 #include <vulkan/vulkan.hpp>
 #include <vulkan/vulkan_structs.hpp>
@@ -9,7 +10,6 @@
 #include <cstdint>
 
 #include "app.hpp"
-#include "utils/utils.hpp"
 #include "gfx/Window.hpp"
 #include "gfx/Instance.hpp"
 #include "gfx/PhysicalDevice.hpp"
@@ -43,10 +43,10 @@ void App::run() {
 	}
 		
 	//Create Instance
-	auto vulkan_instance = gfx::Instance(window, vk_validation_layers);
+	auto vulkan_instance = gfx::Instance{ window, vk_validation_layers };
 
 	//Create Physical Device
-	auto physical_device = gfx::PhysicalDevice(vulkan_instance);
+	auto physical_device = gfx::PhysicalDevice{ vulkan_instance };
 
 	//I need to understand how extensions work better and refactor this so it makes more sense.
 	auto device_extensions= gfx::Device::Extensions {
@@ -65,46 +65,16 @@ void App::run() {
 
 	//swap chain
 	auto swap_chain = gfx::SwapChain{ &device, physical_device, surface, window };
+	
+	//pipeline
+	auto pipeline = gfx::Pipeline{ device, swap_chain };
 
 	//Shaders
-	auto vert_shader_module = VkShaderModule{};
-	auto frag_shader_module = VkShaderModule{};
-	{
-		auto vert_shader_binaries = (std::vector<char>) Utils::load_shader("../resources/shaders/bin/test.vert.spv");
-		auto frag_shader_binaries = (std::vector<char>) Utils::load_shader("../resources/shaders/bin/test.frag.spv");
-		
-		auto vert_shader_module_info = VkShaderModuleCreateInfo {
-			.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
-			.codeSize = vert_shader_binaries.size(),
-			.pCode = reinterpret_cast<const uint32_t*>( vert_shader_binaries.data() ),
-		};
-		auto frag_shader_module_info = VkShaderModuleCreateInfo {
-			.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
-			.codeSize = frag_shader_binaries.size(),
-			.pCode = reinterpret_cast<const uint32_t*>( frag_shader_binaries.data() ),
-		};
-
-
-		vkCreateShaderModule(
-			device.get(),
-			&vert_shader_module_info, 
-			nullptr, 
-			&vert_shader_module
-		);
-		vkCreateShaderModule(
-			device.get(),
-			&frag_shader_module_info, 
-			nullptr, 
-			&frag_shader_module
-		);
-	}
 
 	while( !window.should_close() ) {
 		glfwPollEvents();
 	}
 
-	vkDestroyShaderModule(device.get(), vert_shader_module, nullptr);
-	vkDestroyShaderModule(device.get(), frag_shader_module, nullptr);
 
 }
 

@@ -1,0 +1,6 @@
+{
+  "dependencies": [
+    "backward-cpp",
+    "glfw3"
+  ]
+}

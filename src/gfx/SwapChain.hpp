@@ -17,7 +17,7 @@ namespace gfx {
 			inline VkSwapchainKHR& get() { return _swap_chain; }
 			std::vector<VkImage> _images;
 			std::vector<VkImageView> _image_views;
-
+			VkExtent2D _image_extent;
 		private:
 
 			VkSwapchainKHR _swap_chain;	
