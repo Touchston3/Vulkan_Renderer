@@ -5,6 +5,8 @@
 namespace gfx
 {
 	PhysicalDevice::PhysicalDevice( Instance& vulkan_instance ) :
+		_properties{},
+		_features{},
 		_physical_device{}
 	{
 		
@@ -22,13 +24,16 @@ namespace gfx
 		);
 
 		for( auto physical_device : physical_devices ) {
-	  		auto properties = VkPhysicalDeviceProperties();
-	  		auto features = VkPhysicalDeviceFeatures();
+	  		auto properties = VkPhysicalDeviceProperties{};
+	  		auto features = VkPhysicalDeviceFeatures{};
 			vkGetPhysicalDeviceProperties( physical_device, &properties );
 			vkGetPhysicalDeviceFeatures( physical_device, &features );
 
 			if( properties.deviceType == VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU ) {
 				_physical_device = VkPhysicalDevice( physical_device ); 
+				_properties = properties;
+				_features = features;
+				
 			}
 		}
 

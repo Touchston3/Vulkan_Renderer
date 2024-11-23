@@ -2,6 +2,7 @@
 
 #include <vulkan/vulkan.h>
 #include <vector>
+#include <vulkan/vulkan_core.h>
 
 #include "Device.hpp"
 #include "PhysicalDevice.hpp"
@@ -18,6 +19,7 @@ namespace gfx {
 			std::vector<VkImage> _images;
 			std::vector<VkImageView> _image_views;
 			VkExtent2D _image_extent;
+			VkSurfaceFormatKHR _format; 
 		private:
 
 			VkSwapchainKHR _swap_chain;	

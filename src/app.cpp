@@ -48,6 +48,9 @@ void App::run() {
 	//Create Physical Device
 	auto physical_device = gfx::PhysicalDevice{ vulkan_instance };
 
+	//Create Surface
+	auto surface = gfx::Surface{ &vulkan_instance, window };
+
 	//I need to understand how extensions work better and refactor this so it makes more sense.
 	auto device_extensions= gfx::Device::Extensions {
 		std::vector<const char*> {
@@ -56,19 +59,18 @@ void App::run() {
 	};
 	auto device = gfx::Device {
 		physical_device,
+		surface,
 		vk_validation_layers,
 		device_extensions
 	};
 
-	//Create Surface
-	auto surface = gfx::Surface{ &vulkan_instance, window };
 
 	//swap chain
 	auto swap_chain = gfx::SwapChain{ &device, physical_device, surface, window };
 	
 	//pipeline
 	auto pipeline = gfx::Pipeline{ device, swap_chain };
-
+	pipeline.draw();
 	//Shaders
 
 	while( !window.should_close() ) {

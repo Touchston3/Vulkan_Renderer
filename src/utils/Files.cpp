@@ -1,13 +1,10 @@
-#pragma once
-
-#include <fstream>
-#include <vector>
-#include <string>
+#include "Files.hpp"
 #include <iostream>
+#include <fstream>
 
 namespace Utils {
 
-	inline std::vector<char> load_shader( const std::string& file_path ) {
+	std::vector<char> Files::load_shader( const std::string& file_path ) {
 
 		std::ifstream file_stream = std::ifstream( file_path, std::ios::binary | std::ios::ate );
 

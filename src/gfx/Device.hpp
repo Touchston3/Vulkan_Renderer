@@ -2,6 +2,7 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 #include "PhysicalDevice.hpp"
+#include "Surface.hpp"
 
 namespace gfx {
 	class Device {
@@ -17,12 +18,15 @@ namespace gfx {
 			};
 
 		public:
-			Device( PhysicalDevice& physical_device, const std::vector<const char*>& validation_layers, Device::Extensions& extensions );
+			Device( PhysicalDevice& physical_device, Surface& surface, const std::vector<const char*>& validation_layers, Device::Extensions& extensions );
 			~Device();
 
 			inline VkDevice& get() { return _device; }
 
-			VkQueue _queue;
+			VkQueue _graphics_queue;
+			VkQueue _present_queue;	
+			uint32_t _graphics_family_queue_index;
+			uint32_t _present_family_queue_index;
 
 		private:
 			VkDevice _device;
